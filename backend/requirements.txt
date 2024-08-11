@@ -1,0 +1,7 @@
+gnupg2
+build-essential
+libpq-dev
+ruby
+ruby-dev
+postgresql-client
+libsqlite3-dev

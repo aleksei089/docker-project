@@ -1,0 +1,56 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    networks:
+      first:
+        ipv4_address: 10.100.11.11
+    depends_on:
+      - backend
+
+  database:
+    image: postgres:16.3-alpine3.20
+    restart: unless-stopped
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: redmine
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    networks:
+      second:
+        ipv4_address: 10.100.12.13
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      REDMINE_DB_POSTGRES: database
+      REDMINE_DB_USERNAME: user
+      REDMINE_DB_PASSWORD: password
+      REDMINE_DB_DATABASE: redmine
+      RAILS_ENV: development
+    networks:
+      first:
+        ipv4_address: 10.100.11.12
+      second:
+        ipv4_address: 10.100.12.12
+    depends_on:
+      - database
+
+networks:
+  first:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.100.11.0/24
+  second:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.100.12.0/24
+      

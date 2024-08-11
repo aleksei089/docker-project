@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: redmine
+  host: database
+  username: user
+  password: password
+  encoding: utf8
