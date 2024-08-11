@@ -26,8 +26,6 @@ services:
   backend:
     build: ./backend
     restart: unless-stopped
-    ports:
-      - "3000:3000"
     environment:
       REDMINE_DB_POSTGRES: database
       REDMINE_DB_USERNAME: user
