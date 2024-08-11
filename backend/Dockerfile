@@ -24,4 +24,7 @@ RUN bundle exec rake generate_secret_token
 
 EXPOSE 3000
 
+COPY entrypoint.sh /usr/src/redmine/entrypoint.sh
+ENTRYPOINT ["/usr/src/redmine/entrypoint.sh"]
+
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]

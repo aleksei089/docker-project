@@ -31,7 +31,7 @@ services:
       REDMINE_DB_USERNAME: user
       REDMINE_DB_PASSWORD: password
       REDMINE_DB_DATABASE: redmine
-      RAILS_ENV: development
+      RAILS_ENV: production
     networks:
       first:
         ipv4_address: 10.100.11.12
