@@ -3,6 +3,9 @@ Repository with my first Docker project. The repository allows to deploy Redmine
 
 **Build & Run**
 ```
+git clone https://github.com/aleksei089/docker-project
+```
+```
 cd docker-project/
 ```
 ```
